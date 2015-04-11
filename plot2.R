@@ -1,12 +1,13 @@
 source("./loadDataSet.R")
 
-dataSet <- getDataSet()
+plot2 <- function(dataSet) {
+        with(dataSet, plot(timestamp,
+                           Global_active_power,
+                           type = "l",
+                           ylab = "Global Active Power (kilowatts)"),
+             xlab = "")        
+}
 
-with(dataSet, plot(timestamp,
-                   Global_active_power,
-                   type = "l",
-                   ylab = "Global Active Power (kilowatts"),
-                   xlab = "")
-
-dev.copy(png,"./plot2.png")
+plot2(getDataSet())
+dev.copy(png,"./plot2.png", width=480, height=480)
 dev.off()
