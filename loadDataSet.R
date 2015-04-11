@@ -80,6 +80,7 @@ loadDataSet <- function() {
                 housepwrDT <- subset(housepwrDT, housepwrDT$Date == "1/2/2007" | housepwrDT$Date == "2/2/2007")
         }
         
+        housepwrDT <- transformDateTime(housepwrDT)
         housepwrDT
 }
 
@@ -97,8 +98,11 @@ isUnixPlatform <- function() {
         else FALSE
 }
 
-addDateTime <- function() {
-        #dataSet <- mutate(housepwrDT,timestamp = strptime(paste(Date,Time),"%d/%m/%Y %H:%M:%S"))
-        dataSet <- mutate(housepwrDT,timestamp = as.POSIXct(paste(Date,Time),tz = "", format = dateTimeFormat))
+transformDateTime <- function(housepwrDT) {
+        dataSet <- 
+                mutate(housepwrDT,
+                       timestamp = as.POSIXct(paste(Date,Time),tz = "", format = dateTimeFormat)) %>%
+                select(timestamp,Global_active_power:Sub_metering_3)
+        
         dataSet
 }
