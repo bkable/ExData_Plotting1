@@ -13,6 +13,8 @@ zipFileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_p
 zipFile <- "./exdata-household-power-consumption.zip"
 dataFile <- "./household_power_consumption.txt"
 subsetDataFile <- "./subset_household_power_consumption.txt"
+unixPlatform <- "unix"
+dateTimeFormat <- "%d/%m/%Y %H:%M:%S"
 
 housepwrDT <<- NULL
 
@@ -41,34 +43,40 @@ cleanSubsetFile <- function() {
 loadDataSet <- function() {
         init()
         
-        if(!file.exists(dataFile)) {
-                if(!file.exists(zipFile)) {
-                        print("Downloading Zip File")
-                        download.file(zipFileUrl,zipFile,method = "curl")
+        if(!file.exists(subsetDataFile)) {
+                if(!file.exists(dataFile)) {
+                        if(!file.exists(zipFile)) {
+                                print("Downloading Zip File")
+                                download.file(zipFileUrl,zipFile,method = "curl")
+                        }
+                        
+                        print("Extracting Zip File")
+                        unzip(zipFile)        
                 }
                 
-                print("Extracting Zip File")
-                unzip(zipFile)        
+                # If a unix platform, do system level grep filter for Jan/Feb 2007 data
+                # for more efficient memory usage
+                
+                if(isUnixPlatform()) {
+                        print("Unix environment detected, Subsetting data through system grep for Jan, Feb 2007")
+                        subsetFile()    
+                }
         }
         
         print("Loading Dataset")
         
         housepwrDT <- NULL
         
-        # If a unix platform, do system level grep filter for Jan/Feb 2007 data
-        # for more efficient memory usage
+        print("Loading Data Table")
         
         if(isUnixPlatform()) {
-                print("Unix environment detected, Subsetting data through system grep for Jan, Feb 2007")
-                subsetFile()
-                print("Loading Data Table")
                 housepwrDT <- read.table(subsetDataFile,sep = ";")
                 names(housepwrDT) <- getHeaderList()
         # If Windows default to full data set load and subset after
         } else {
-                print("Loading Data Table")
                 housepwrDT <- read.table(dataFile,sep = ";")
                 names(housepwrDT) <- getHeaderList()
+                print("Subsetting Data")
                 housepwrDT <- subset(housepwrDT, housepwrDT$Date == "1/2/2007" | housepwrDT$Date == "2/2/2007")
         }
         
@@ -85,6 +93,12 @@ getHeaderList <- function() {
 }
 
 isUnixPlatform <- function() {
-        if(.Platform$OS.type == "unix") TRUE
+        if(.Platform$OS.type == unixPlatform) TRUE
         else FALSE
+}
+
+addDateTime <- function() {
+        #dataSet <- mutate(housepwrDT,timestamp = strptime(paste(Date,Time),"%d/%m/%Y %H:%M:%S"))
+        dataSet <- mutate(housepwrDT,timestamp = as.POSIXct(paste(Date,Time),tz = "", format = dateTimeFormat))
+        dataSet
 }
