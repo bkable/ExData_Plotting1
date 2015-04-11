@@ -6,4 +6,5 @@ x <- dataSet$Global_active_power
 
 hist(x,col="red",xlab = "Global Active Power (kilowatts)",main = "Global Active Power")
 
-dev.
+dev.copy(png,"./plot1.png")
+dev.off()
