@@ -1,4 +1,25 @@
-## Introduction
+## READ ME!
+This project is Course Assignment 1.  Instructions are followed, with additional helper functionality to facilitate running the plots.
+
+1.  Helper function is provided to load data from web URL:  loadDataSet.R file is sourced by all the plot scripts, getDataSet() will download zip, extract, and subset it.  If running Linux or MacOSX platforms, subsetting will happen as part of system grep before read.table().
+
+2.  The Sub Metering plots render legends.  Plot 4 rendering does not work properly with topright location, helper function getSubMeteringLegendCoord() in getSubMeteringLegendCoord.R will calculate placement coordinates for the legend.
+
+Following are instructions for preparing and running:
+
+1.  Clone this repository: git clone https://github.com/bkable/ExData_Plotting1.git
+
+2.  Launch R, or RStudio, and set working directory to ExData_Plotting1 directory (setwd()).
+
+3.  Run each individual plot script (plot1.R --> plot4.R).  The load logic is sourced through getDataSet() function, which is sourced from loadDataSet.R script in each plot file.  The scripts are only tested on MacOSX -- If you run into errors with the load of data, manually extract the zip file loaded from <a href="https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip">Electric power consumption</a> into the working directory, and rerun the scripts.
+
+
+
+
+
+
+
+## Introduction (from Coursera Assignment)
 
 This assignment uses data from
 the <a href="http://archive.ics.uci.edu/ml/">UC Irvine Machine
