@@ -7,14 +7,11 @@ This project is Course Assignment 1.  Instructions are followed, with additional
 
 Following are instructions for preparing and running:
 
-1.  Clone this repository: git clone https://github.com/bkable/ExData_Plotting1.git
+1.  Clone this repository to your local workspace: git clone https://github.com/bkable/ExData_Plotting1.git
 
-2.  Launch R, or RStudio, and set working directory to ExData_Plotting1 directory (setwd()).
+2.  Launch R from ExData_Plotting1 working directory, or from RStudio, set working directory to ExData_Plotting1 directory (setwd()).
 
-3.  Run each individual plot script (plot1.R --> plot4.R).  The load logic is sourced through getDataSet() function, which is sourced from loadDataSet.R script in each plot file.  The scripts are only tested on MacOSX -- If you run into errors with the load of data, manually extract the zip file loaded from https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip into the working directory, and rerun the scripts.
-
-
-
+3.  Run each individual plot script (plot1.R --> plot4.R) simply by sourcing it (scripts are set to run plots).  
 
 
 
