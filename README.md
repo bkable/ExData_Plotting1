@@ -1,7 +1,7 @@
 ## READ ME!
 This project is Course Assignment 1.  Instructions are followed, with additional helper functionality to facilitate running the plots.
 
-1.  Helper function is provided to load data from web URL:  loadDataSet.R file is sourced by all the plot scripts, getDataSet() will download zip, extract, and subset it.  If running Linux or MacOSX platforms, subsetting will happen as part of system grep before read.table().
+1.  Helper function is provided to load data from web URL:  loadDataSet.R file is sourced by all the plot scripts, getDataSet() will download zip, extract, and subset it.
 
 2.  The Sub Metering plots render legends.  Plot 4 rendering does not work properly with topright location, helper function getSubMeteringLegendCoord() in getSubMeteringLegendCoord.R will calculate placement coordinates for the legend.
 
