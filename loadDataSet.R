@@ -101,8 +101,8 @@ isUnixPlatform <- function() {
 transformDateTime <- function(housepwrDT) {
         dataSet <- 
                 mutate(housepwrDT,
-                       timestamp = as.POSIXct(paste(Date,Time),tz = "", format = dateTimeFormat)) %>%
-                select(timestamp,Global_active_power:Sub_metering_3)
+                       datetime = as.POSIXct(paste(Date,Time),tz = "", format = dateTimeFormat)) %>%
+                select(datetime,Global_active_power:Sub_metering_3)
         
         dataSet
 }
