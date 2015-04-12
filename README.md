@@ -9,7 +9,7 @@ Following are instructions for preparing and running:
 
 1.  Clone this repository to your local workspace: git clone https://github.com/bkable/ExData_Plotting1.git
 
-2.  Launch R from ExData_Plotting1 working directory, or from RStudio, set working directory to ExData_Plotting1 directory (setwd()).
+2.  Launch R from (or from RStudio set working directory to) ExData_Plotting1 working directory.
 
 3.  Run each individual plot script (plot1.R --> plot4.R) simply by sourcing it (scripts are set to run plots).  
 
